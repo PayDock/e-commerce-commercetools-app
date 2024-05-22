@@ -276,6 +276,7 @@ class CommerceToolsAPIAdapter {
     for (const payment of orderPayments) {
       if (paymentsArray[payment.id] !== undefined) {
         let currentPayment = paymentsArray[payment.id];
+        let refundAmount = currentPayment.refundAmount > 0 ? Math.round(currentPayment.refundAmount * 100) / 100 : currentPayment.refundAmount;
         objOrder.amount = currentPayment.amount;
         objOrder.currency = currentPayment.currency;
         objOrder.created_at = currentPayment.createdAt;
@@ -286,7 +287,7 @@ class CommerceToolsAPIAdapter {
         objOrder.paydock_transaction = currentPayment.paydockChargeId;
         objOrder.shipping_information = currentPayment.shippingInfo;
         objOrder.billing_information = currentPayment.billingInfo;
-        objOrder.refund_amount = currentPayment.refundAmount;
+        objOrder.refund_amount = refundAmount
       }
     }
   }

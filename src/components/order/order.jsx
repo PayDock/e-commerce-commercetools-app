@@ -22,7 +22,6 @@ const OrdersHistory = () => {
     const [typedAmountRefund, setTypedAmountRefund] = useState({});
     const [updateAmountRefund, setUpdateAmountRefund] = useState({});
     const [changeStatus, setChangeStatus] = useState({});
-    const [changeStatusName, setChangeStatuName] = useState({});
     const [changeDate, setChangeDate] = useState({});
     const [isVisibleInputRefaund, setIsVisibleInputRefaund] = useState({});
     const [isVisibleRefundButtons, setIsVisibleRefundButtons] = useState({});
@@ -57,7 +56,7 @@ const OrdersHistory = () => {
         } else {
             setRowErrors(prevState => ({
                 ...prevState,
-                [id]: {message: result.message},
+                [id]: { message: result.message},
             }));
             setLoading(prevState => ({
                 ...prevState,
@@ -73,7 +72,7 @@ const OrdersHistory = () => {
                 ...prevState,
                 [orderId]: status,
             }));
-            setChangeStatuName(prevState => ({
+            setStatusName(prevState => ({
                 ...prevState,
                 [orderId]: statusName,
             }));
@@ -366,7 +365,7 @@ const OrdersHistory = () => {
                               : d.status === 'paydock-p-refund' || d.status === 'paydock-refunded'
                                 ? <>
                                     <span className="refund-base-amount">{d.amount}</span>
-                                    {d.amount - d.refund_amount}<br />
+                                    {Math.round((d.amount - d.refund_amount) * 100) / 100 }<br />
                                     <span className="refund">
                                             <svg xmlns="http://www.w3.org/2000/svg" height="10" width="10"
                                                  viewBox="0 0 512 512"><path fill="#ff0000"
@@ -395,7 +394,7 @@ const OrdersHistory = () => {
                         <td
                           className={`status ${changeStatus[d.order_number] ? changeStatus[d.order_number]: d.status}`}>
                             <span className="mobile-label">{columns[9].label}:</span>
-                            <span>{changeStatusName[d.order_number] ? changeStatusName[d.order_number] : d.statusName}</span>
+                            <span>{statusName[d.order_number] ? statusName[d.order_number] : d.statusName}</span>
                         </td>
                         <td className="action">
                             <div className="action-wrapper">
