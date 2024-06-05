@@ -8,8 +8,13 @@ import axios from 'axios';
 import moment from 'moment';
 import {ContentNotification} from "@commercetools-uikit/notifications";
 import CommerceToolsAPIAdapter from '../../commercetools-api-adaptor';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 
 const LogsHistory = () => {
+    const env = useApplicationContext(
+      (context) => context.environment
+    );
+    const apiAdapter = new CommerceToolsAPIAdapter(env);
     const [error, setError] = useState(null);
     const [rows, setRows] = useState([]);
     const [currentRows, setCurrentRows] = useState([]);
@@ -31,7 +36,6 @@ const LogsHistory = () => {
     const firstRowIndex = lastRowIndex - perPage;
 
     useEffect(async () => {
-        const apiAdapter = new CommerceToolsAPIAdapter();
         let logs = await apiAdapter.getLogs();
         setRows(logs);
         setCurrentRows(rows.slice(firstRowIndex, lastRowIndex))

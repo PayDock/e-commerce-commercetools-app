@@ -12,8 +12,13 @@ import { ContentNotification } from '@commercetools-uikit/notifications';
 import NumberField from '@commercetools-uikit/number-field';
 import PulseLoader from 'react-spinners/PulseLoader';
 import CommerceToolsAPIAdapter from '../../commercetools-api-adaptor';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 
 const OrdersHistory = () => {
+    const env = useApplicationContext(
+      (context) => context.environment
+    );
+    const apiAdapter = new CommerceToolsAPIAdapter(env);
     const [error, setError] = useState(null);
     const [rows, setRows] = useState([]);
     const [currentRows, setCurrentRows] = useState([]);
@@ -36,7 +41,6 @@ const OrdersHistory = () => {
     const [loading, setLoading] = useState({});
     const [sortedColumn, setSortedColumn] = useState(null);
     const [sortOrder, setSortOrder] = useState('asc');
-    const apiAdapter = new CommerceToolsAPIAdapter();
 
     const requestUpdateOrder = async (id, status, refund_amount = null, updated_at) => {
 

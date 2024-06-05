@@ -42,6 +42,17 @@ class ValidationPaydockData {
                 errors.push('Incorrect fraud service id for: ' + key.replace('_fraud_service_id', '')
                   .replace('_', ' '));
             }
+            if(key.includes('fraud_service_id')
+              && ('Enable' === form[key.replace('_service_id', '')])
+              && servicesId.servicesIds.includes(form[key])
+              && (key.includes('afterpay') || key.includes('zip'))
+              && servicesId.fraudServices[form[key]]
+            ){
+                let test = servicesId.fraudServices[form[key]];
+                errors.push('Fraud service mode is not supported with ' + key.replace('_fraud_service_id', '')
+                  .replace('alternative_payment_methods_', ' ')
+                  .replace('_',' '));
+            }
 
             if (
               key.includes('3ds_service_id')
@@ -79,10 +90,17 @@ class ValidationPaydockData {
 
         let gateways = await axios.get(`${this.apiUrl}/v1/gateways?limit=1000`, config);
         let services = await axios.get(`${this.apiUrl}/v1/services?limit=1000`, config);
+        let fraudServices = {}
 
         return {
             gatewayIds: gateways.data.resource.data.map((element) => element._id),
-            servicesIds: services.data.resource.data.map((element) => element._id),
+            servicesIds: services.data.resource.data.map((element) => {
+                if('fraud' === element.group){
+                    fraudServices[element._id] = "passive" !== element.fraud_options.mode
+                }
+                return element._id;
+            }),
+            fraudServices,
         }
     }
 
