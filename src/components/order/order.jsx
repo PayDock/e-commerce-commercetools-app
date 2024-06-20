@@ -49,6 +49,7 @@ const OrdersHistory = () => {
             newStatus: status,
             newDate: updated_at,
         };
+
         if (refund_amount !== null) requestData.refundAmount = refund_amount;
         let result = await apiAdapter.updateOrderStatus(requestData);
         if (result.success) {
@@ -67,7 +68,6 @@ const OrdersHistory = () => {
                 [id]: false,
             }));
         }
-
     };
 
     useEffect(() => {
@@ -227,7 +227,6 @@ const OrdersHistory = () => {
                 : undefined;
 
             const newStatusName = newStatus === 'paydock-refunded' ? 'Refunded via Paydock' : 'Partial refunded via Paydock';
-
             setRefund(refundAmountUpdate);
             setType(type);
             setStatus(newStatus);
@@ -395,8 +394,7 @@ const OrdersHistory = () => {
                             <span className="mobile-label">{columns[8].label}:</span>
                             {changeDate[d.order_number] ? moment(changeDate[d.order_number]).format('YYYY-MM-DD HH:mm:ss') : moment(d.updated_at).format('YYYY-MM-DD HH:mm:ss')}
                         </td>
-                        <td
-                          className={`status ${changeStatus[d.order_number] ? changeStatus[d.order_number]: d.status}`}>
+                        <td  className={`status ${changeStatus[d.order_number] ? changeStatus[d.order_number]: d.status}`}>
                             <span className="mobile-label">{columns[9].label}:</span>
                             <span>{statusName[d.order_number] ? statusName[d.order_number] : d.statusName}</span>
                         </td>
