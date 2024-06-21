@@ -1,7 +1,45 @@
 # Paydock Commercetools Custom Application
 
-This guide provides instructions on how to install and set up the "Paydock" custom application for Commercetools.
+## Overview
 
+This application allows you to set up connections to the Paydock API (both live and sandbox connections), manage orders created via Paydock, and customize the Paydock widget styles.
+
+### Setup Connections to Paydock API
+With this application, you can set up connections to the Paydock API for both live and sandbox environments:
+- Public Key
+- Secret Key
+- Supported Card Schemes
+- Gateway ID
+- Other configurations...
+
+![configuration.png](docs%2Fconfiguration.png)
+
+### Manage Orders
+The application allows you to manage orders created via Paydock:
+- View orders
+- Change order status
+- Other actions...
+
+![orders.png](docs%2Forders.png)
+
+
+### Customize Paydock Widget Styles
+Customization options for the Paydock widget include:
+- Background color
+- Size
+- Color
+- Text
+- Other  settings...
+
+
+![style-configuration.png](docs%2Fstyle-configuration.png)
+
+
+### View Payment Logs
+The application allows you to view logs of all payments.
+![log.png](docs%2Flog.png)
+
+This guide provides instructions on how to install and set up the "Paydock" custom application for Commercetools.
 
 ## Prerequisites
 Before you begin, ensure you have met the following requirements:
