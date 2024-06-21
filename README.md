@@ -32,7 +32,7 @@ Customization options for the Paydock widget include:
 - Other  settings...
 
 
-![style-configuration.png](docs%2Fstyle-configuration.png)
+![style-configuration.png](docs%2Fstyleconfiguration.png)
 
 
 ### View Payment Logs
