@@ -97,6 +97,7 @@ export const CHARGE_STATUSES =  {
   'paydock-cancelled': 'Cancelled via Paydock',
   'paydock-refunded': 'Refunded via Paydock',
   'paydock-p-refund': 'Partial refunded via Paydock',
+  'paydock-p-paid': 'Partial paid via Paydock',
   'paydock-requested': 'Requested via Paydock',
   'paydock-failed': 'Failed via Paydock',
   'paydock-received': 'Received via Paydock',

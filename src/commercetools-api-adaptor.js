@@ -186,6 +186,7 @@ class CommerceToolsAPIAdapter {
         shippingInfo: shippingInformation,
         billingInfo: billingInformation,
         refundAmount: customFields.RefundedAmount ?? 0,
+        capturedAmount: customFields.CapturedAmount ?? 0,
       };
     });
   }
@@ -213,7 +214,6 @@ class CommerceToolsAPIAdapter {
   }
 
   async updateOrderStatus(data) {
-
     const orderId = data.orderId;
     let response = {};
     let error = null;
@@ -280,6 +280,8 @@ class CommerceToolsAPIAdapter {
       if (paymentsArray[payment.id] !== undefined) {
         let currentPayment = paymentsArray[payment.id];
         let refundAmount = currentPayment.refundAmount > 0 ? Math.round(currentPayment.refundAmount * 100) / 100 : currentPayment.refundAmount;
+        let capturedAmount = currentPayment.capturedAmount > 0 ? Math.round(currentPayment.capturedAmount * 100) / 100 : currentPayment.capturedAmount;
+
         objOrder.amount = currentPayment.amount;
         objOrder.currency = currentPayment.currency;
         objOrder.created_at = currentPayment.createdAt;
@@ -290,7 +292,9 @@ class CommerceToolsAPIAdapter {
         objOrder.paydock_transaction = currentPayment.paydockChargeId;
         objOrder.shipping_information = currentPayment.shippingInfo;
         objOrder.billing_information = currentPayment.billingInfo;
-        objOrder.refund_amount = refundAmount
+        objOrder.captured_amount = capturedAmount;
+        objOrder.refund_amount = refundAmount;
+        objOrder.possible_amount_captured = currentPayment.amount - capturedAmount;
       }
     }
   }

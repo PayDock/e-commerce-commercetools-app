@@ -74,6 +74,10 @@
     color: #fa0000;
 }
 
+.table-orders .amount .captured-amount {
+    color: #1D635D;
+}
+
 .table-orders .paydock-authorize span,
 .table-orders .paydock-p-refund span,
 .table-orders .paydock-pending span,
@@ -84,6 +88,7 @@
 .table-orders .paydock-received span,
 .table-orders .paydock-refunded span,
 .table-orders .paydock-cancelled span,
+.table-orders .paydock-p-paid span,
 .table-orders .paydock-paid span {
     background-color: #CEF6F3;
     color: #1D635D;
