@@ -522,7 +522,7 @@ const OrdersHistory = () => {
                                                                     isRequired={true}
                                                                 />
                                                                 <PrimaryButton
-                                                                    label="Captured"
+                                                                    label="Capture"
                                                                     onClick={() => handleOrderAction('submit-captured', d.order_number, d.amount, d.captured_amount)}
                                                                     isDisabled={
                                                                         (typedAmountCaptured[d.order_number] <= 0 ||
